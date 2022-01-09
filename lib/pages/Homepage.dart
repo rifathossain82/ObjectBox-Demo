@@ -21,11 +21,11 @@ class _HomepageState extends State<Homepage> {
   late Store store;
   late Box<UserModel> box;
   late UserModel userModel;
-  String buttonText='Add';
+  String buttonText='Add';     //button text
 
-  List<Data> datalist=[];
-  late Data data;
-  late int id;
+  List<Data> datalist=[];         //to store  all data in datalist
+  late Data data;       //variable of Data class
+  late int id;          //to put id for update
 
   @override
   void initState(){
@@ -37,10 +37,10 @@ class _HomepageState extends State<Homepage> {
   }
 
      void ddd()async{
-     store = await openStore();
-     box = store.box<UserModel>();
+     store = await openStore();  //open object box
+     box = store.box<UserModel>();      //
 
-     refreshData();
+     refreshData();   //just load all data of datalist
 
 
     //userModel = UserModel(name: 'Rifat', age: 21);
@@ -61,10 +61,10 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void dispose() {
-    store.close();
+    store.close(); //to close store
     super.dispose();
   }
- var username='';
+ var username='';    //skip it
   TextEditingController namecontroller=TextEditingController();
   TextEditingController agecontroller=TextEditingController();
 
@@ -97,6 +97,7 @@ class _HomepageState extends State<Homepage> {
               child: ElevatedButton(
                 child: Text(buttonText),
                 onPressed: (){
+                  //to add new data
                   if(buttonText.contains('Add')){
                     userModel = UserModel(name: namecontroller.text.toString(), age: int.parse(agecontroller.text.toString()));
                     var id=box.put(userModel);
@@ -111,6 +112,8 @@ class _HomepageState extends State<Homepage> {
                       agecontroller.clear();
                     });
                   }
+
+                  //to update specific data
                   else{
                     userModel = UserModel(id: id ,name: namecontroller.text.toString(), age: int.parse(agecontroller.text.toString()));
                     box.put(userModel);
@@ -128,6 +131,7 @@ class _HomepageState extends State<Homepage> {
             ),
             Text('${datalist.length}'),
             SizedBox(height: 8,),
+            //to show all data
             Expanded(
               child: ListView.builder(
                 itemCount: datalist.length,

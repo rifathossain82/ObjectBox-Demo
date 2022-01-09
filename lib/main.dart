@@ -6,7 +6,6 @@ import 'package:objectbox_database_demo/pages/Homepage.dart';
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
 
-  //boxes = await Boxes.create();
   runApp(const MyApp());
 }
 
